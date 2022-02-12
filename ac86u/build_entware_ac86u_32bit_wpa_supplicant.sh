@@ -20,8 +20,8 @@ find bin/ -iname "*${1}*"
 
 build_package_custom_hostapd(){
 
-#cp configs/armv7-3.2.config .config
-cp configs/aarch64-3.10.config .config
+cp configs/armv7-3.2.config .config
+#cp configs/aarch64-3.10.config .config
 patch -s -p 0 < ../patch.hostapd
 patch -s -p 0 < ../patch.libubus
 # diff -u configs/aarch64-3.10.config .config > ../patch.hostapd
