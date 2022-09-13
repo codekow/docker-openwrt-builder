@@ -13,6 +13,9 @@ else
   DOCKER_CMD='docker'
 fi
 
+# check for selinux
+which getenforce && SELINUX=':z'
+
 # pull image
 ${DOCKER_CMD} pull debian:buster
 
@@ -22,8 +25,7 @@ ${DOCKER_CMD} build -t ${IMAGE_NAME} .
 # run shell in container
 [ ! -d ${BUILD_DIR} ] && mkdir -p ${BUILD_DIR}
 echo "RUN:
-${DOCKER_CMD} run ${DOCKER_ARG} -u $(id -u) --rm -v $(pwd):/home/builder:z -it ${IMAGE_NAME} /bin/bash
+${DOCKER_CMD} run ${DOCKER_ARG} -u $(id -u) --rm -v $(pwd):/home/builder${SELINUX} -it ${IMAGE_NAME} /bin/bash
 "
 
-${DOCKER_CMD} run ${DOCKER_ARG} -u $(id -u) --rm -v $(pwd):/home/builder:z -it ${IMAGE_NAME} /bin/bash
-
+${DOCKER_CMD} run ${DOCKER_ARG} -u $(id -u) --rm -v $(pwd):/home/builder${SELINUX} -it ${IMAGE_NAME} /bin/bash
