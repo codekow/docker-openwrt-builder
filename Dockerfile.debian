@@ -1,4 +1,4 @@
-FROM debian:buster
+FROM docker.io/library/debian:buster
 
 ENV DEBIAN_FRONTEND noninteractive
 
