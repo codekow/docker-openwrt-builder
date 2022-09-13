@@ -1,5 +1,5 @@
-openwrt/*
-scratch/*
-entware/*
-build/*
+openwrt/
+scratch/
+entware/
+build/
 .bash_history
