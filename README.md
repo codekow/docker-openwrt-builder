@@ -8,26 +8,31 @@ Build tested:
 
 - OpenWrt-19.07.4
 
-A smaller container based on Alpine Linux is available as `Dockerfile.alpine`
-
-## Prerequisites
-
-* Docker / Podman installed
-* build Docker image:
-
+## Quickstart
 ```
-docker build -t openwrt_builder .
-docker build -t openwrt_builder_debian -f Dockerfile.debian .
+# build and start container
+setup.sh
 ```
 
-## Usage GNU/Linux
-
-Create a build folder and link it into a new docker container:
+## Build packages
 ```
-mkdir ~/build
-docker run --name openwrt_builder \
-  -v $(pwd)/build:/home/builder \
-  -it openwrt_builder /bin/bash
+cd build
+
+. ../ac86u/functions.sh
+
+# choose 32bit or 64bit
+# init armv7-3.2.config
+# init aarch64-3.10.config
+
+# setup entware
+setup_entware_config
+setup_entware_tools
+
+# build packages
+# ex: build_package screen
+
+# build wpa-supplicant
+build_package_custom_hostapd
 ```
 
 In the container console, enter:

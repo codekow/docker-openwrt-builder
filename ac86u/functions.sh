@@ -64,12 +64,14 @@ build_package_custom_hostapd(){
   find bin/ -name "[wpa|hostapd]*.ipk"
 }
 
-# 32bit
-# init armv7-3.2.config
+echo 32bit
+echo init armv7-3.2.config
 
-# 64bit
-init aarch64-3.10.config
+echo 64bit
+echo init aarch64-3.10.config
+echo
 
+init
 #setup_entware_config
 #setup_entware_tools
 
