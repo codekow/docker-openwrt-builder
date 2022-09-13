@@ -42,15 +42,17 @@ build_package(){
 
   ./scripts/feeds install ${1}
 
-  #echo make -j1 V=sc package/${1}/download
-  #echo make -j1 V=sc package/${1}/check
+  # debug
+  # echo make -j1 V=sc package/${1}/download
+  # echo make -j1 V=sc package/${1}/check
   find package/ -iname "*${1}*"
 
   make -j$(nproc) package/${1}/prepare
   make -j$(nproc) package/${1}/compile
 
-  #echo make -j1 V=sc package/${1}/prepare
-  #echo make -j1 V=sc package/${1}/compile
+  # debug
+  # echo make -j1 V=sc package/${1}/prepare
+  # echo make -j1 V=sc package/${1}/compile
   find bin/ -iname "*${1}*"
 }
 
@@ -60,7 +62,6 @@ build_package_custom_hostapd(){
   patch -s -p 0 < ${PATH_DIR}/patch.libubus
 
   build_package hostapd
-
   find bin/ -name "[wpa|hostapd]*.ipk"
 }
 
