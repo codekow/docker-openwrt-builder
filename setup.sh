@@ -2,7 +2,7 @@
 
 # https://openwrt.org/docs/guide-developer/build-system/use-buildsystem#custom_files
 
-BUILD_DIR=$(pwd)
+BUILD_DIR=$(pwd)/scratch
 WRT_VERSION='19.07.4'
 IMAGE_NAME=openwrt-builder
 
@@ -20,10 +20,10 @@ ${DOCKER_CMD} pull debian:buster
 ${DOCKER_CMD} build -t ${IMAGE_NAME} .
 
 # run shell in container
-#[ ! -d ${BUILD_DIR} ] && mkdir ${BUILD_DIR}
+[ ! -d ${BUILD_DIR} ] && mkdir -p ${BUILD_DIR}
 echo "RUN:
-${DOCKER_CMD} run ${DOCKER_ARG} --rm -v ${BUILD_DIR}:/home/builder --name wrtbuilder -it ${IMAGE_NAME} /bin/bash
+${DOCKER_CMD} run ${DOCKER_ARG} -u $(id -u) --rm -v $(pwd):/home/builder:z -it ${IMAGE_NAME} /bin/bash
 "
 
-${DOCKER_CMD} run ${DOCKER_ARG} --rm -v ${BUILD_DIR}:/home/builder --name wrtbuilder -it ${IMAGE_NAME} /bin/bash
+${DOCKER_CMD} run ${DOCKER_ARG} -u $(id -u) --rm -v $(pwd):/home/builder:z -it ${IMAGE_NAME} /bin/bash
 

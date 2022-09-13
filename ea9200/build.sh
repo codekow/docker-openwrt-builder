@@ -20,7 +20,7 @@ cat feeds.conf.default > feeds.conf
 #sed -i "s/luci.git\^.*$/luci.git\^8aceafe45622dd9168a129e86574f7aac0ce5352/g" feeds.conf
 
 # custom fix for ea9200
-echo "src-git ea9500_openwrt https://github.com/happykow/ea9500_openwrt.git" >> feeds.conf
+echo "src-git ea9500_openwrt https://github.com/codekow/ea9500_openwrt.git" >> feeds.conf
 
 ./scripts/feeds update -a
 ./scripts/feeds install -a
