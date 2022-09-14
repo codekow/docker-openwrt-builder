@@ -3,3 +3,4 @@ scratch/
 entware/
 build/
 .bash_history
+venv/
