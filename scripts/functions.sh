@@ -1,5 +1,8 @@
 #!/bin/bash
 
+PATH_DIR=$( dirname "${BASH_SOURCE[0]}" )
+ENTWARE_DIR=entware
+
 init(){
   
   # 32bit
@@ -10,34 +13,36 @@ init(){
   
   CONFIG_FILE=${1:-aarch64-3.10.config}
   echo CONFIG_FILE=${CONFIG_FILE}
-
-  PATH_DIR=$( dirname "${BASH_SOURCE[0]}")
   echo PATH_DIR=${PATH_DIR}
+  echo ENTWARE_DIR=${ENTWARE_DIR}
 
 }
   
 setup_entware_config(){
   # git clone
-  git clone https://github.com/Entware/Entware.git entware
-  cd entware
+  git clone https://github.com/Entware/Entware.git ${ENTWARE_DIR}
+  pushd ${ENTWARE_DIR}
 
   # Update OpenWRT Feeds
   ./scripts/feeds update -a
   make package/symlinks
+
+  popd
 }
 
 setup_entware_tools(){
-
+  pushd ${ENTWARE_DIR}
   cp configs/${CONFIG_FILE} .config
 
   make dirclean
   make -j$(nproc) tools/install
   make -j$(nproc) toolchain/install
   make -j$(nproc) target/compile
+  popd
 }
 
 build_package(){
-
+  pushd ${ENTWARE_DIR}
   make -j$(nproc) target/compile
 
   ./scripts/feeds install ${1}
@@ -54,15 +59,18 @@ build_package(){
   # echo make -j1 V=sc package/${1}/prepare
   # echo make -j1 V=sc package/${1}/compile
   find bin/ -iname "*${1}*"
+  popd
 }
 
 build_package_custom_hostapd(){
+  pushd ${ENTWARE_DIR}
   cp configs/${CONFIG_FILE} .config
-  patch -s -p 0 < ${PATH_DIR}/patch.hostapd
-  patch -s -p 0 < ${PATH_DIR}/patch.libubus
+  patch -s -p 0 < wpa_supplicant/patch.hostapd
+  patch -s -p 0 < wpa_supplicant/patch.libubus
 
   build_package hostapd
   find bin/ -name "[wpa|hostapd]*.ipk"
+  popd
 }
 
 echo 32bit
