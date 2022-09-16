@@ -9,7 +9,7 @@ on:  # yamllint disable-line rule:truthy
 
 jobs:
   bash-lint:
-    name: bash-lint
+    name: shellcheck
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -20,8 +20,8 @@ jobs:
           severity: warning
 
   containerfile-lint:
-    runs-on: ubuntu-latest
     name: hadolint
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: Run Hadolint
