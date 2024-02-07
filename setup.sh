@@ -2,7 +2,7 @@
 
 # https://openwrt.org/docs/guide-developer/build-system/use-buildsystem#custom_files
 
-BASE_IMAGE=docker.io/library/debian:buster
+BASE_IMAGE=docker.io/library/debian:bullseye
 IMAGE_NAME=openwrt-builder
 
 

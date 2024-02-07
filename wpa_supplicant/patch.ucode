@@ -1,0 +1,100 @@
+--- package/utils/ucode/Makefile.orig	2024-02-06 14:00:05.338224897 +0000
++++ package/utils/ucode/Makefile	2024-02-06 14:07:20.151456241 +0000
+@@ -24,7 +24,6 @@
+ include $(INCLUDE_DIR)/host-build.mk
+ include $(INCLUDE_DIR)/cmake.mk
+ 
+-CMAKE_OPTIONS += -DSOVERSION=$(PKG_ABI_VERSION)
+ CMAKE_HOST_OPTIONS += \
+ 	-DSOVERSION=$(PKG_ABI_VERSION) \
+ 	-DFS_SUPPORT=ON \
+@@ -37,6 +36,7 @@
+ 	-DUCI_SUPPORT=OFF \
+ 	-DULOOP_SUPPORT=OFF
+ 
++CMAKE_OPTIONS = $(CMAKE_HOST_OPTIONS)
+ 
+ define Package/ucode/default
+   SUBMENU:=ucode
+@@ -174,64 +174,64 @@
+ 
+ define Build/InstallDev
+ 	$(INSTALL_DIR) $(1)/usr/lib $(1)/usr/include/ucode
+-	$(CP) $(PKG_INSTALL_DIR)/usr/include/ucode/*.h $(1)/usr/include/ucode/
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libucode.so* $(1)/usr/lib/
++	$(CP) $(PKG_INSTALL_DIR)/opt/include/ucode/*.h $(1)/usr/include/ucode/
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libucode.so* $(1)/usr/lib/
+ endef
+ 
+ 
+ define Package/ucode/install
+ 	$(INSTALL_DIR) $(1)/usr/bin
+-	$(CP) $(PKG_INSTALL_DIR)/usr/bin/u* $(1)/usr/bin/
++	$(CP) $(PKG_INSTALL_DIR)/opt/bin/u* $(1)/usr/bin/
+ endef
+ 
+ define Package/libucode/install
+ 	$(INSTALL_DIR) $(1)/usr/lib
+-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libucode.so.* $(1)/usr/lib/
++	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libucode.so* $(1)/usr/lib/
+ endef
+ 
+ define Package/ucode-mod-fs/install
+ 	$(INSTALL_DIR) $(1)/usr/lib/ucode
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/ucode/fs.so $(1)/usr/lib/ucode/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/ucode/fs.so $(1)/usr/lib/ucode/
+ endef
+ 
+ define Package/ucode-mod-math/install
+ 	$(INSTALL_DIR) $(1)/usr/lib/ucode
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/ucode/math.so $(1)/usr/lib/ucode/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/ucode/math.so $(1)/usr/lib/ucode/
+ endef
+ 
+ define Package/ucode-mod-nl80211/install
+-	$(INSTALL_DIR) $(1)/usr/lib/ucode
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/ucode/nl80211.so $(1)/usr/lib/ucode/
++	#$(INSTALL_DIR) $(1)/usr/lib/ucode
++	#$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/ucode/nl80211.so $(1)/usr/lib/ucode/
+ endef
+ 
+ define Package/ucode-mod-resolv/install
+ 	$(INSTALL_DIR) $(1)/usr/lib/ucode
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/ucode/resolv.so $(1)/usr/lib/ucode/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/ucode/resolv.so $(1)/usr/lib/ucode/
+ endef
+ 
+ define Package/ucode-mod-rtnl/install
+-	$(INSTALL_DIR) $(1)/usr/lib/ucode
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/ucode/rtnl.so $(1)/usr/lib/ucode/
++	#$(INSTALL_DIR) $(1)/usr/lib/ucode
++	#$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/ucode/rtnl.so $(1)/usr/lib/ucode/
+ endef
+ 
+ define Package/ucode-mod-struct/install
+ 	$(INSTALL_DIR) $(1)/usr/lib/ucode
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/ucode/struct.so $(1)/usr/lib/ucode/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/ucode/struct.so $(1)/usr/lib/ucode/
+ endef
+ 
+ define Package/ucode-mod-ubus/install
+-	$(INSTALL_DIR) $(1)/usr/lib/ucode
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/ucode/ubus.so $(1)/usr/lib/ucode/
++	#$(INSTALL_DIR) $(1)/usr/lib/ucode
++	#$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/ucode/ubus.so $(1)/usr/lib/ucode/
+ endef
+ 
+ define Package/ucode-mod-uci/install
+ 	$(INSTALL_DIR) $(1)/usr/lib/ucode
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/ucode/uci.so $(1)/usr/lib/ucode/
++	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/ucode/uci.so $(1)/usr/lib/ucode/
+ endef
+ 
+ define Package/ucode-mod-uloop/install
+-	$(INSTALL_DIR) $(1)/usr/lib/ucode
+-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/ucode/uloop.so $(1)/usr/lib/ucode/
++	#$(INSTALL_DIR) $(1)/usr/lib/ucode
++	#$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/lib/ucode/uloop.so $(1)/usr/lib/ucode/
+ endef
+ 
+ $(eval $(call BuildPackage,libucode))
