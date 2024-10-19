@@ -1,5 +1,7 @@
 # Docker OpenWrt Builder
 
+[![File Linting](https://github.com/codekow/docker-openwrt-builder/actions/workflows/linting.yaml/badge.svg)](https://github.com/codekow/docker-openwrt-builder/actions/workflows/linting.yaml)
+
 Build [OpenWrt](https://openwrt.org/) images in a Docker container.
 
 The docker image is based on Debian 10 (Buster).
