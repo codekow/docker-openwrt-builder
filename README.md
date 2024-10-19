@@ -1,6 +1,6 @@
 # Docker OpenWrt Builder
 
-Build [OpenWrt](https://openwrt.org/) images in a Docker container. 
+Build [OpenWrt](https://openwrt.org/) images in a Docker container.
 
 The docker image is based on Debian 10 (Buster).
 
@@ -9,16 +9,18 @@ Build tested:
 - OpenWrt-19.07.4
 
 ## Quickstart
-```
+
+```sh
 # build and start container
-setup.sh
+./setup.sh
 ```
 
 ## Build packages
-```
+
+```sh
 cd build
 
-. ../ac86u/functions.sh
+. ../scripts/functions.sh
 
 # choose 32bit or 64bit
 # init armv7-3.2.config
@@ -36,7 +38,8 @@ build_package_custom_hostapd
 ```
 
 In the container console, enter:
-```
+
+```sh
 git clone https://git.openwrt.org/openwrt/openwrt.git
 cd openwrt
 ./scripts/feeds update -a
@@ -46,8 +49,9 @@ make -j$(nproc) V=s
 ```
 
 ## Links
-* [docker-openwrt-buildroot](https://github.com/noonien/docker-openwrt-buildroot)
-* [openwrt-docker-toolchain](https://github.com/mchsk/openwrt-docker-toolchain)
-* [Entware compile from source](https://github.com/Entware/Entware/wiki/Compile-packages-from-sources)
-* [cross-compile-proxychains](https://www.snbforums.com/threads/solution-cross-compile-proxychains-ng-entware-package-via-debian-live-dvd.76960)
-* [compile custom programs](https://github.com/RMerl/asuswrt-merlin.ng/wiki/Compile-custom-programs-from-source)
+
+- [docker-openwrt-buildroot](https://github.com/noonien/docker-openwrt-buildroot)
+- [openwrt-docker-toolchain](https://github.com/mchsk/openwrt-docker-toolchain)
+- [Entware compile from source](https://github.com/Entware/Entware/wiki/Compile-packages-from-sources)
+- [cross-compile-proxychains](https://www.snbforums.com/threads/solution-cross-compile-proxychains-ng-entware-package-via-debian-live-dvd.76960)
+- [compile custom programs](https://github.com/RMerl/asuswrt-merlin.ng/wiki/Compile-custom-programs-from-source)
