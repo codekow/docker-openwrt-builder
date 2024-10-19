@@ -9,7 +9,7 @@ git config --global user.name "$(whoami)" && git config --global user.email "${E
 
 git clone https://git.openwrt.org/openwrt/openwrt.git openwrt
 
-cd openwrt
+cd openwrt || exit
 git pull origin master
 git tag -l
 git checkout v${WRT_VERSION}
@@ -54,5 +54,5 @@ fi
 
 # build
 make download
-make -j$(nproc) V=s 2>&1 | tee build.log | grep -i -E "^make.*(error|[12345]...Entering dir)"
+make -j "$(nproc)" V=s 2>&1 | tee build.log | grep -i -E "^make.*(error|[12345]...Entering dir)"
 

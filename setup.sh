@@ -27,4 +27,4 @@ echo "RUN:
 ${DOCKER_CMD} run ${DOCKER_ARG} -u $(id -u) --rm -v $(pwd):/home/builder/build${SELINUX} -it ${IMAGE_NAME} /bin/bash
 "
 
-${DOCKER_CMD} run ${DOCKER_ARG} -u "$(id -u)" --rm -v "$(pwd):/home/builder/build${SELINUX}" -it ${IMAGE_NAME} /bin/bash
+${DOCKER_CMD} run "${DOCKER_ARG}" -u "$(id -u)" --rm -v "$(pwd):/home/builder/build${SELINUX}" -it ${IMAGE_NAME} /bin/bash
